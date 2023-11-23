@@ -5,7 +5,9 @@ plugins {
 android {
     namespace = "com.example.calculationtest"
     compileSdk = 33
-
+    buildFeatures {
+        dataBinding =true
+    }
     defaultConfig {
         applicationId = "com.example.calculationtest"
         minSdk = 24
@@ -32,10 +34,12 @@ android {
 }
 
 dependencies {
-
+    implementation(platform("org.jetbrains.kotlin:kotlin-bom:1.8.0"))//这一段代码
     implementation("androidx.appcompat:appcompat:1.6.1")
     implementation("com.google.android.material:material:1.8.0")
     implementation("androidx.constraintlayout:constraintlayout:2.1.4")
+    implementation("androidx.navigation:navigation-fragment:2.5.3")
+    implementation("androidx.navigation:navigation-ui:2.5.3")
     testImplementation("junit:junit:4.13.2")
     androidTestImplementation("androidx.test.ext:junit:1.1.5")
     androidTestImplementation("androidx.test.espresso:espresso-core:3.5.1")
