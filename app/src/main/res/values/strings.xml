@@ -13,4 +13,6 @@
     <string name="win_image_message">win image</string>
     <string name="lose_score_message">Your Score:%d</string>
     <string name="win_score_message">New Record:%d</string>
+    <string name="button0">0</string>
+    <string name="answer_correct_message">Correct! Go On</string>
 </resources>

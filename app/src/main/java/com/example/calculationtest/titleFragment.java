@@ -2,11 +2,18 @@ package com.example.calculationtest;
 
 import android.os.Bundle;
 
+import androidx.databinding.DataBindingUtil;
 import androidx.fragment.app.Fragment;
+import androidx.lifecycle.SavedStateViewModelFactory;
+import androidx.lifecycle.ViewModelProvider;
+import androidx.navigation.NavController;
+import androidx.navigation.Navigation;
 
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+
+import com.example.calculationtest.databinding.FragmentTitleBinding;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -58,7 +65,24 @@ public class titleFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_title, container, false);
+        MyViewModel myViewModel;
+        myViewModel = new ViewModelProvider(this, new SavedStateViewModelFactory(requireActivity().getApplication(), this)).get(MyViewModel.class);
+        //在Fragments中写这一段
+        FragmentTitleBinding binding = DataBindingUtil.inflate(inflater, R.layout.fragment_title, container, false);
+        binding.setData(myViewModel);
+        //如果是在activity中直接this,如果实在Fragments的话需要getActivity()
+        //getActivity() 返回的是 Fragment 所关联的 Activity 的实例。
+        binding.setLifecycleOwner(getActivity()); //todo
+        binding.button.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
+                //view指当前视图的实例Fragments
+                NavController controller = Navigation.findNavController(view);
+                controller.navigate(R.id.action_titleFragment_to_questionFragment);
+            }
+        });
+        return binding.getRoot();
     }
+
 }

@@ -34,6 +34,7 @@ android {
 }
 
 dependencies {
+    implementation ("androidx.lifecycle:lifecycle-viewmodel-savedstate:2.5.1")
     implementation(platform("org.jetbrains.kotlin:kotlin-bom:1.8.0"))//这一段代码
     implementation("androidx.appcompat:appcompat:1.6.1")
     implementation("com.google.android.material:material:1.8.0")
